@@ -1,4 +1,5 @@
 using EfCore.Application.Dtos.Auth;
+using EfCore.Application.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -80,10 +81,4 @@ public sealed class IdentityAuthService(UserManager<AppUser> user) : IAuthServic
 
     return new RegisterResult(RegisterStatus.Created, response, []);
   }
-}
-
-public interface IAuthService
-{
-  Task<RegisterResult> RegisterAsync(RegisterRequest request, CancellationToken ct = default);
-  Task<LoginResults> LoginAsync(LoginRequest request, CancellationToken ct = default);
 }

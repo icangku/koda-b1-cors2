@@ -61,10 +61,10 @@ public class AppDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>
             .IsRequired()
             .HasDefaultValue(true);
 
-				entity.HasOne(p => p.Category)
-						.WithMany(c => c.Products)
-						.HasForeignKey(p => p.CategoryId)
-						.OnDelete(DeleteBehavior.Restrict);
+        entity.HasOne(p => p.Category)
+            .WithMany(c => c.Products)
+            .HasForeignKey(p => p.CategoryId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         entity.Property(p => p.DeactivatedAtUtc)
             .IsRequired(false);
@@ -116,11 +116,11 @@ public class AppDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>
     //Category
     modelBuilder.Entity<Category>(entity =>
     {
-			entity.ToTable("Category", "dbo");
-			entity.HasKey(c => c.Id);
-			entity.Property(c => c.Id).ValueGeneratedOnAdd();
-			entity.Property(c => c.Name).HasMaxLength(30).IsRequired();
-			entity.HasIndex(c => c.Name).IsUnique();
+        entity.ToTable("Category", "dbo");
+        entity.HasKey(c => c.Id);
+        entity.Property(c => c.Id).ValueGeneratedOnAdd();
+        entity.Property(c => c.Name).HasMaxLength(30).IsRequired();
+        entity.HasIndex(c => c.Name).IsUnique();
     });
   }
 }
